@@ -52,4 +52,4 @@ Output is:
 Should fail, return None:  None
 ['Applied', 'Stats', 'Dbl Maths']
 ['GCSE', 'A level', 'BSc', 'MSc', 'Dr', 'Prof']
-:::
+"""
