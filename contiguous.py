@@ -2,7 +2,6 @@ def solve(l, k):
     for n in range(len(l)):
         total =  0
         for x in range(len(l[n:]) + 1):
-            print(l[n: n + x])
             if total == k:
                 return l[n:n + x]
             elif total > k:
