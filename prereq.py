@@ -22,6 +22,7 @@ def solve(prereqs):
             if is_qualified(completed, prereq) and course not in completed:
                 # add course to completed
                 completed.append(course)
+                print("taking course: ", course, "as have ", prereq)
                 ok = True
 
         if not ok:
