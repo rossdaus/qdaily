@@ -4,44 +4,23 @@ def solve(a, pos=0, *path):
     pos is our current position (index of the array)
     path is a tuple of values containing our previous positions (indexes)
     """
-
-    # If at end of array we are successfull, return the path we took
+    # If at end of array we are successful, return the path we took
     if pos == len(a) - 1:
         return (*path, pos)
 
-    # get absolute of current hop value
-    hops = abs(a[pos])
-
-    # if we land on a 0 we have failed
-    if hops == 0:
+    # get absolute of current hop value, fail if out of range
+    try:
+        hops = abs(a[pos])
+    except IndexError:
         return False
 
-    # Assume we can go either back or forward
-    back = forward = True
-
-    # we cant go back if we have been there before or it is not in range
-    if pos - hops < 0 or (pos - hops) in path:
-        back = False
-
-    # we cant go forward if we have been there before or it is not in range
-    if pos + hops >= len(a) or (pos + hops) in path:
-        forward = False
-
-    # Fail if cant go forward or back
-    if not forward and not back:
+    # Fail if landed on a 0, or have been at this position
+    if hops == 0 or pos in path:
         return False
 
-    # We can go forward or back so add current position to our path
-    else:
-        path = (*path, pos)
-
-    # Solve for next hop
-    if forward and not back:
-        return solve(a, pos + hops, *path)
-    elif back and not forward:
-        return solve(a, pos - hops, *path)
-    elif forward and back:
-        return solve(a, pos + hops, *path) or solve(a, pos - hops, *path)
+    # Solve for forward and backward hops
+    return solve(a, pos + hops, *path, pos) or \
+           solve(a, pos - hops, *path, pos)
 
 goods = (
     [-2, 0, -1, 0],
