@@ -9,7 +9,7 @@ def solve(a, pos=0, *path):
         return (*path, pos)
 
     # Quit on repetition, out of range or hop value of 0
-    if pos in path or pos < 0 or pos + 1 > len(a) or a[pos] == 0:
+    if pos in path or not (0 <= pos < len(a)) or a[pos] == 0:
         return False
 
     # Solve for forward and backward hops
