@@ -4,8 +4,7 @@ def find_anagrams(w, s):
     for n, letter in enumerate(s):
         if letter in w:
             # Try anagram match
-            attempt = s[n:n + len(w)]
-            if sorted(attempt) == sorted(w):
+            if sorted(s[n:n + len(w)]) = sorted(w)
                 indices.append(n)
     return indices
 
