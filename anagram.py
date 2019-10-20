@@ -1,13 +1,11 @@
 def find_anagrams(w, s):
     """Find starting indices of anagram of w in s."""
     indices = []
-    anlength = len(w)
-    sorted_word = sorted(w)
     for n, letter in enumerate(s):
         if letter in w:
             # Try anagram match
-            attempt = s[n:n + anlength]
-            if sorted(attempt) == sorted_word:
+            attempt = s[n:n + len(w)]
+            if sorted(attempt) == sorted(w):
                 indices.append(n)
     return indices
 
