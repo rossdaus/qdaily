@@ -11,24 +11,11 @@ class Node:
             return f"{self.val}[{self.l},{self.r}]"
         return self.val
 
-    def mklist(self, m=None):
-        """ hash the tree."""
-        if not m:
-            m = []
-            m.append(self.val)
-        if self.l:
-            m.append(self.l.val)
-            self.l.mklist(m)
-        if self.r:
-            m.append(self.r.val)
-            self.r.mklist(m)
-        return(m)
-
     def contains(self, other):
         """Determine if other is a subree of self."""
         if isinstance(other, Node):
-            other = other.mklist()
-        if self.mklist() == other:
+            other = other.__repr__()
+        if self.__repr__() == other:
             return True
         elif self.r and self.r.contains(other):
             return True
@@ -55,8 +42,24 @@ print(first)
 print(second)
 print(first.contains(second), "\n")
 # False
+
 second.l = Node("h")
 print(first)
 print(second)
-print(first.contains(second))
+print(first.contains(second), "\n")
+# True
+
+second = Node("b")
+second.l = Node("d")
+second.r = Node("e")
+print(first)
+print(second)
+print(first.contains(second), "\n")
+# False
+
+second.r.l = Node("h")
+second.r.r = Node("i")
+print(first)
+print(second)
+print(first.contains(second), "\n")
 # True
