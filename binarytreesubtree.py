@@ -49,17 +49,17 @@ print(second)
 print(first.contains(second), "\n")
 # True
 
-second = Node("b")
-second.l = Node("d")
-second.r = Node("e")
+third = Node("b")
+third.l = Node("d")
+third.r = Node("e")
 print(first)
-print(second)
-print(first.contains(second), "\n")
+print(third)
+print(first.contains(third), "\n")
 # False
 
-second.r.l = Node("h")
-second.r.r = Node("i")
+third.r.l = Node("h")
+third.r.r = Node("i")
 print(first)
-print(second)
-print(first.contains(second), "\n")
+print(third)
+print(first.contains(third), "\n")
 # True
