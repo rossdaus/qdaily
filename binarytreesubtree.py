@@ -34,24 +34,27 @@ first = Node("a")
 first.l = Node("b", Node("d"), Node("e", Node("h"), Node("i")))
 first.r = Node("c", Node("f"), Node("g"))
 
+#            a[b[d,e[h,i]],c[f,g]]
+
 #                    a
 #                b       c
 #              d   e    f g
 #                 h i
 
-second = Node("e", Node("x"), Node("i"))
+
+second = Node("e", Node("x"), Node("i"))  # e[x,i]
 contains(first, second)
 # False
 
-second.l = Node("h")
+second.l = Node("h")  # e[h,i]
 contains(first, second)
 # True
 
-third = Node("b", Node("d"), Node("e"))
+third = Node("b", Node("d"), Node("e"))  #  b[d,e]
 contains(first, third)
 # False
 
 third.r.l = Node("h")
-third.r.r = Node("i")
+third.r.r = Node("i")  #  b[d,e[h,i]]
 contains(first, third)
 # True
