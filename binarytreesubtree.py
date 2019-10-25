@@ -34,6 +34,11 @@ first = Node("a")
 first.l = Node("b", Node("d"), Node("e", Node("h"), Node("i")))
 first.r = Node("c", Node("f"), Node("g"))
 
+#                    a
+#                b       c
+#              d   e    f g
+#                 h i
+
 second = Node("e", Node("x"), Node("i"))
 contains(first, second)
 # False
