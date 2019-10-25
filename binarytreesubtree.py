@@ -24,42 +24,29 @@ class Node:
         else:
             return False
 
+def contains(atree, btree):
+    """Does atree contain btree?"""
+    print(atree)
+    print(btree)
+    print(atree.contains(btree), "\n")
+
 first = Node("a")
-first.l = Node("b")
-first.l.l = Node("d")
-first.l.r = Node("e")
-first.l.r.l = Node("h")
-first.l.r.r = Node("i")
-first.r = Node("c")
-first.r.l = Node("f")
-first.r.r = Node("g")
+first.l = Node("b", Node("d"), Node("e", Node("h"), Node("i")))
+first.r = Node("c", Node("f"), Node("g"))
 
-second = Node("e")
-second.l = Node("x")
-second.r = Node("i")
-
-print(first)
-print(second)
-print(first.contains(second), "\n")
+second = Node("e", Node("x"), Node("i"))
+contains(first, second)
 # False
 
 second.l = Node("h")
-print(first)
-print(second)
-print(first.contains(second), "\n")
+contains(first, second)
 # True
 
-third = Node("b")
-third.l = Node("d")
-third.r = Node("e")
-print(first)
-print(third)
-print(first.contains(third), "\n")
+third = Node("b", Node("d"), Node("e"))
+contains(first, third)
 # False
 
 third.r.l = Node("h")
 third.r.r = Node("i")
-print(first)
-print(third)
-print(first.contains(third), "\n")
+contains(first, third)
 # True
