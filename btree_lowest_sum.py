@@ -21,8 +21,8 @@ def level_with_min_sum(root):
         elif digits:  #  add digits to whatever level we are on
             sums[level] = 0 if level not in sums else sums[level]
             sums[level] += int(digits)
-            if char in "[]":  # increment or decrement current level
-                level += (1 if char == "[" else -1)
+        if char in "[]":  # increment or decrement current level
+            level += (1 if char == "[" else -1)
         digits = ""
 
     lowest = min(v for k, v in sums.items())
