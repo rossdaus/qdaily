@@ -6,12 +6,10 @@ class Node:
     def minlev(self, sums={}, level=0):
         """Find level which has the lowest sum."""
         sums[level] = sums.get(level, 0) + self.val
-
         if self.l:
             self.l.minlev(sums, level + 1)
         if self.r:
             self.r.minlev(sums, level + 1)
-
         return min(sums, key=sums.get)
 
 #                  10
