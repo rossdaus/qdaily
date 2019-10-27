@@ -25,7 +25,7 @@ def level_with_min_sum(root):
             level += (1 if char == "[" else -1)
         digits = ""
 
-    lowest = min(v for k, v in sums.items())
+    lowest = min(v for v in sums.values())
     return  next(k for k, v in sums.items() if v == lowest)
 
 #                  10
