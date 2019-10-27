@@ -15,7 +15,7 @@ def level_with_min_sum(root):
     """Find level of tree with the lowest sum."""
     sums, level, digits = {}, 0, ""
     for char in str(root):  # loop over characters in tree representation
-        if char.isdigit():  # collect digit characters
+        if char in ".-0123456789":  # collect digit characters
             digits += char
             continue
         elif digits:  #  add digits to whatever level we are on
