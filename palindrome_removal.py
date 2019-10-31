@@ -1,3 +1,6 @@
+class Count:
+    total = 0
+
 def is_palindrome(string):
     """ Return whether string is palindrome."""
     return string == string[::-1]
@@ -29,13 +32,15 @@ def bruteforce(string, k, *args):
 
     # Recursively remove up to k chars from all positions
     for pos in range(len(string)):
+        Count.total += 1
         oneless = string[:pos] + string[pos + 1:]
         removed = string[pos]
-        print(oneless, f"removed {*args, removed}")
         if bruteforce(oneless, k - 1, *args, removed):
+            print(oneless, f"removed {*args, removed}")
+            print(Count.total)
             return True
 
     return False
 
-x = can_make_palindrome("waterrfetawx", 2)
+x = can_make_palindrome("wzlaxgterrfetawx", 6)
 print(x)
