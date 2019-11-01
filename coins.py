@@ -1,4 +1,6 @@
 import random
+D = "0"
+R = "1"
 
 def generate_matrix(x, y):
     """Generate a random matrix of coins, size x * y."""
@@ -11,7 +13,6 @@ def generate_matrix(x, y):
             row.append(random.choice(range(9)))
 
         matrix.append(row)
-        print(row)
 
     return matrix
 
@@ -27,25 +28,24 @@ def get_route_sum(matrix, route, sums=dict()):
 
         for direction in route:
 
-            if direction == "R":
+            if direction == R:
                 x += 1
             else:
                 y += 1
 
             money += matrix[y][x]
 
-        print("calculating: " + route + ".   Money : " + str(money))
+        # print("calculating: " + route + "   Money : " + str(money))
         sums[route] = money
 
     return sums[route]
 
 
-def get_best(matrix, x=0, y=0, route="", bestroute=""):
+def get_best(matrix, route="", bestroute=""):
 
+    x, y = route.count(R), route.count(D)
     xmax, ymax = len(matrix[0]), len(matrix)
-    # rsum = lambda r: get_route_sum(matrix, r)
-    def rsum(r):
-        return get_route_sum(matrix, r)
+    def rsum(r): return get_route_sum(matrix, r)
 
     # can we move right, can we move down?
     canright = True if x < xmax-1 else False
@@ -53,18 +53,16 @@ def get_best(matrix, x=0, y=0, route="", bestroute=""):
 
     if canright and candown:
         bestroute = max((bestroute,
-                        get_best(matrix, x+1, y, route+"R", bestroute),
-                        get_best(matrix, x, y+1, route+"D", bestroute)
+                        get_best(matrix, route + R, bestroute),
+                        get_best(matrix, route + D, bestroute)
                         ), key=rsum)
 
     elif canright:
         bestroute = max((bestroute,
-                        get_best(matrix, x+1, y, route+"R", bestroute)
-                        ), key=rsum)
+                         get_best(matrix, route + R, bestroute)), key=rsum)
     elif candown:
         bestroute = max((bestroute,
-                        get_best(matrix, x, y+1, route+"D", bestroute)
-                        ), key=rsum)
+                        get_best(matrix, route + D, bestroute)), key=rsum)
 
 
     else:
@@ -76,10 +74,11 @@ def get_best(matrix, x=0, y=0, route="", bestroute=""):
 
 def solve(matrix):
     bestroute = get_best(matrix)
+    print()
     for line in matrix:
         print(line)
     print("bestroute :", ",".join(x for x in bestroute))
     print("money:", get_route_sum(matrix, bestroute))
 
-m = generate_matrix(5,5)
+m = generate_matrix(3,3)
 solve(m)
