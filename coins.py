@@ -1,6 +1,6 @@
 import random
-D = "0"
-R = "1"
+D = "D"
+R = "R"
 
 def generate_matrix(x, y):
     """Generate a random matrix of coins, size x * y."""
@@ -80,5 +80,5 @@ def solve(matrix):
     print("bestroute :", ",".join(x for x in bestroute))
     print("money:", get_route_sum(matrix, bestroute))
 
-m = generate_matrix(3,3)
+m = generate_matrix(11,11)
 solve(m)
