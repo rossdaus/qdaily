@@ -9,13 +9,13 @@ def solve(market, k, best=None):
     k *= 2
     for trade_times in combinations(range(len(market)), k):
         prices = [market[i] for i in trade_times]
-        buys = [prices[i] for i in range(k) if i % 2 == 0]
-        sells = [prices[i] for i in range(k) if i % 2 != 0]
-        trade_pairs = list(zip(buys, sells))
-        total_profit = sum((b - a) for a, b in trade_pairs)
+        total_profit = sum((prices[i + 1] - prices[i] for i in range(0, k, 2)))
 
         # check whether this is best so far
         if best is None or total_profit > best[0]:
+            buys = tuple(prices[i] for i in range(k) if i % 2 == 0)
+            sells = tuple(prices[i] for i in range(k) if i % 2 != 0)
+            trade_pairs = tuple(zip(buys, sells))
             best = total_profit, trade_pairs
 
     # show trades of best profitability
