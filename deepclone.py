@@ -77,10 +77,13 @@ while orig:
     print("Clone values    :", clone.val, clone.rand.val)
 
     # Ensure we are looking at separate objects with the same value
-    assert orig is not clone
-    assert orig.rand is not clone.rand
     assert orig.val == clone.val
     assert orig.rand.val == clone.rand.val
+    assert orig is not clone
+    assert orig.rand is not clone.rand
+    if orig.next or clone.next:
+        assert orig.next is not clone.next
+        assert orig.next.rand is not clone.next.rand
 
     orig = orig.next
     clone = clone.next
