@@ -14,11 +14,11 @@ def solve(market, k, best=None):
             best = total_profit, trade_times
 
     total_profit, trade_times = best
-    prices = tuple(market[i] for i in trade_times)
-    buys = ((prices[i] for i in range(k) if i % 2 == 0))
-    sells = ((prices[i] for i in range(k) if i % 2 != 0))
-    for x, y in ((zip(buys, sells))):
-        print(f"Buy at {x}, Sell at {y}        (Profit: {y - x})")
+
+    for i in range(0, k, 2):
+        buy, sell = market[trade_times[i]], market[trade_times[i + 1]]
+        print(f"Buy at {buy}, Sell at {sell}        (Profit: {sell - buy})")
+
     return total_profit
 
 k = 3
