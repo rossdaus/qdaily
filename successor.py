@@ -27,12 +27,16 @@ chief.r.r = Node(35, babydaddy=chief.r)
 chief.r.l = Node(22, babydaddy=chief.r)
 
 def get_inorder_successor_to_the_throne(node):
+    # retiree will be retired when we find the next bigger successor
     retiree = node.val
     bigcheese = node
+
+    # bigcheese ascends to the top node
     while bigcheese.babydaddy:
         bigcheese = bigcheese.babydaddy
 
     best = None
+    # traveller will travel down looking for the successor
     traveller = bigcheese
 
     # Continue till at leaf node
