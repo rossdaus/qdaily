@@ -41,7 +41,7 @@ class HitCounter:
             # files that fully encapsulate our range
             elif (lower <= int(fstart)) and (upper >= int(fend)):
                 print(f"file {filename} has {self.limit} hits in range.")
-                count += 100
+                count += self.limit
                 continue
 
             # add relevant hits for files partially in range
