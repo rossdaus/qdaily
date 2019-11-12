@@ -10,7 +10,14 @@ class SparseArray:
         if i > me.size:
             raise IndexError
 
-        me.data[i] = val
+        elif val == 0 and i in me.data:
+            del me.data[i]
+
+        elif val == 0 and i not in data:
+            return
+
+        else:
+            me.data[i] = val
 
     def get(me, i):
         """Get a value."""
@@ -23,4 +30,4 @@ arr = [0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 7] + 200 * [0]
 sparse = SparseArray(arr, len(arr))
 sparse.set(214, 3)  # Update value at index 214 to 3
 print(f"internal data    : {sparse.data}")
-print(f"effective values : {[sparse.get(x) for x in range(len(arr))]}")
+print(f"effective values : {[sparse.get(x) for x in range(sparse.size)]}")
