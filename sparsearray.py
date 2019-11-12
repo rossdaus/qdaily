@@ -13,7 +13,7 @@ class SparseArray:
         elif val == 0 and i in me.data:
             del me.data[i]
 
-        elif val == 0 and i not in data:
+        elif val == 0 and i not in me.data:
             return
 
         else:
