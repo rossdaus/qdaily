@@ -10,14 +10,11 @@ class SparseArray:
         if i > me.size:
             raise IndexError
 
+        elif val != 0:
+            me.data[i] = val
+
         elif val == 0 and i in me.data:
             del me.data[i]
-
-        elif val == 0 and i not in me.data:
-            return
-
-        else:
-            me.data[i] = val
 
     def get(me, i):
         """Get a value."""
