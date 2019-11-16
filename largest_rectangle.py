@@ -1,6 +1,5 @@
 from random import randint
 
-
 class Matrix:
     """Class to represent a matrix."""
     def __init__(self, width, height, weighting):
@@ -15,7 +14,6 @@ class Matrix:
         self.matrix = []
 
         for x in range(height):
-
             row = []
 
             for y in range(width):
@@ -27,8 +25,10 @@ class Matrix:
     def __repr__(self):
         """Print the matrix."""
         out = ""
+
         for row in self.matrix:
             out += str(row) + "\n"
+
         return out
 
     def get(self, x, y):
@@ -100,11 +100,14 @@ class Matrix:
         """Get coords and size of largest rectangles."""
         biggest = 0
         position = None
+
         for coord in self.scan():
             best = self.find_biggest(*coord)
+
             if best > biggest:
                 biggest = best
                 position = coord
+
         # Return values as 1-indexed instead of 0 indexed to make more readable
         # position = map(lambda x: x + 1, position)
         return biggest, tuple(position)
@@ -112,6 +115,6 @@ class Matrix:
 
 # Create a 10 x 10 matrix with approx 55% ratio of 1 to 0
 m = Matrix(6, 6, 55)
-print(m)
+print(m) # print the matrix
 biggest, position = m.get_largest_rectangle()
 print(f"Found largest area of {biggest} starting at {position}")
