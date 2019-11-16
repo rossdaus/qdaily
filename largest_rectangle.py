@@ -113,7 +113,7 @@ class Matrix:
         return biggest, tuple(position)
 
 
-# Create a 10 x 10 matrix with approx 55% ratio of 1 to 0
+# Create a 6 x 6 matrix with approx 55% ratio of 1 to 0
 m = Matrix(6, 6, 55)
 print(m) # print the matrix
 biggest, position = m.get_largest_rectangle()
