@@ -24,21 +24,22 @@ def pre_process(arr):
     for n in range(len(arr)):
         table[n] = nearest(arr, n)
 
-    return table
+    for n in range(len(arr)):
+        arr[n] = table[n]
 
 def fast_nearest(preprocessed_arr, idx):
     """Pre processed solution."""
     return preprocessed_arr[idx]
 
 
-arr = list(range(1, 10))
+arr = list(range(9))
 random.shuffle(arr)
 index = 3
 print(arr)
 answer = nearest(arr, index)
-print(f"Nearest to index {index} ({arr[index]}) is index {answer}")
+print(f"Nearest to index {index} is index {answer}")
 
 # pre-process array
-pp_arr = pre_process(arr)
-answer = fast_nearest(pp_arr, index)
-print(f"Nearest to index {index} ({arr[index]}) is index {answer}")
+pre_process(arr)
+answer = fast_nearest(arr, index)
+print(f"Nearest to index {index} is index {answer}")
