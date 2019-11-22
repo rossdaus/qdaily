@@ -19,10 +19,7 @@ def nearest(arr, idx):
 
 def pre_process(arr):
     """Create lookup table with all the answers."""
-    table = [0] * len(arr)
-
-    for n in range(len(arr)):
-        table[n] = nearest(arr, n)
+    table = [nearest(arr, n) for n in range(len(arr))]
 
     for n in range(len(arr)):
         arr[n] = table[n]
@@ -32,14 +29,17 @@ def fast_nearest(preprocessed_arr, idx):
     return preprocessed_arr[idx]
 
 
-arr = list(range(9))
+arr = list(range(25))
 random.shuffle(arr)
-index = 3
 print(arr)
-answer = nearest(arr, index)
-print(f"Nearest to index {index} is index {answer}")
+
+for index in range(6):
+    answer = nearest(arr, index)
+    print(f"Nearest to index {index} is index {answer}")
 
 # pre-process array
+print("\nPre-processed method:\n")
 pre_process(arr)
-answer = fast_nearest(arr, index)
-print(f"Nearest to index {index} is index {answer}")
+for index in range(6):
+    answer = fast_nearest(arr, index)
+    print(f"Nearest to index {index} is index {answer}")
